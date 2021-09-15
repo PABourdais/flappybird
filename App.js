@@ -1,14 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, View } from 'react-native';
 import { GameEngine } from 'react-native-game-engine';
 import entities from './entities';
+import Physics from './physics'
 
 export default function App() {
+  const [running, setRunning] = useState(false)
+
+  useEffect(() => {
+    setRunning(true)
+  }, [])
+  
   return (
     <View style={styles.container}>
       <GameEngine
+        systems={[Physics]}
         entities={entities()}
+        running={running}
         style={styles.gameEngine}
       >
       </GameEngine>
