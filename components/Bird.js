@@ -1,6 +1,6 @@
 import Matter from 'matter-js'
 import React from 'react'
-import { View } from 'react-native'
+import { View, ImageBackground, StyleSheet } from 'react-native'
 
 const Bird = props => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
@@ -13,16 +13,14 @@ const Bird = props => {
 
     return (
         <View style={{
-            borderWidth: 1,
-            borderColor: color,
-            borderStyle: 'solid',
             position: 'absolute',
             left: xBody,
             top: yBody,
             width: widthBody,
             height: heightBody,
-
-        }}/>
+        }}>
+            <ImageBackground source={require('../assets/images/bluebird-midflap.png')} resizeMode="contain" style={styles.image}/>
+        </View>
     )
 }
 
@@ -43,3 +41,10 @@ export default (world, color, pos, size) => {
         renderer: <Bird/>
     }
 }
+
+const styles = StyleSheet.create({
+    image: {
+      flex: 1,
+      justifyContent: "center"
+    },
+  });
