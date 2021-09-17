@@ -1,6 +1,7 @@
 import Matter from "matter-js"
 import Bird from "../components/Bird";
 import Floor from "../components/Floor";
+import Obstacle from "../components/Obstacle";
 
 import { Dimensions } from "react-native";
 
@@ -17,7 +18,8 @@ export default restart => {
     return {
         physics: {engine,world},
         Bird: Bird(world, 'red', {x: 50, y: 300}, {height: 40, width: 40}),
-        Floor: Floor(world, 'green', {x: windowWidth / 2, y: windowHeight}, {height: 50, width: windowWidth})
+        Floor: Floor(world, 'green', {x: windowWidth / 2, y: windowHeight}, {height: 50, width: windowWidth}),
+        ObstacleTop1: Obstacle(world,'Obstacle1' ,'green', {x: 50, y: 300}, {height: 40, width: 40}),
     }
 
 }
