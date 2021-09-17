@@ -2,6 +2,7 @@ import Matter from "matter-js"
 import Bird from "../components/Bird";
 import Floor from "../components/Floor";
 import Obstacle from "../components/Obstacle";
+import { getPipeSizePosPair } from "../utils/random";
 
 import { Dimensions } from "react-native";
 
@@ -15,11 +16,15 @@ export default restart => {
 
     let world = engine.world
 
+    const pipeSizePosA = getPipeSizePosPair(-300)
+
     return {
         physics: {engine,world},
         Bird: Bird(world, 'red', {x: 50, y: 300}, {height: 40, width: 40}),
         Floor: Floor(world, 'green', {x: windowWidth / 2, y: windowHeight}, {height: 50, width: windowWidth}),
-        ObstacleTop1: Obstacle(world,'Obstacle1' ,'green', {x: 50, y: 300}, {height: 40, width: 40}),
+        
+        ObstacleTop1: Obstacle(world, 'ObstacleTop1', 'green', pipeSizePosA.pipeTop.pos, pipeSizePosA.pipeTop.size),
+        ObstacleBottom1: Obstacle(world, 'ObstacleBottom1', 'green', pipeSizePosA.pipeBottom.pos, pipeSizePosA.pipeBottom.size),
     }
 
 }
