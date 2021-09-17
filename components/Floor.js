@@ -1,6 +1,6 @@
 import Matter from 'matter-js'
 import React from 'react'
-import { View } from 'react-native'
+import { View, ImageBackground, StyleSheet } from 'react-native'
 
 const Floor = props => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
@@ -20,7 +20,9 @@ const Floor = props => {
             width: widthBody,
             height: heightBody,
 
-        }}/>
+        }}>
+             <ImageBackground source={require('../assets/images/base.png')} resizeMode="stretch" style={styles.image}/>
+        </View>
     )
 }
 
@@ -45,3 +47,10 @@ export default (world, color, pos, size) => {
         renderer: <Floor/>
     }
 }
+
+const styles = StyleSheet.create({
+    image: {
+      flex: 1,
+      justifyContent: "center"
+    },
+  });
