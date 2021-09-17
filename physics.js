@@ -27,12 +27,13 @@ const Physics = (entities, {touches, time, dispatch}) => {
         }
 
         if (entities[`ObstacleTop${index}`].body.bounds.max.x <= 0 ) {
-            entities[`ObstacleTop${index}`].point = false
 
             const pipeSizePos = getPipeSizePosPair(windowWidth * 0.9)
         
             Matter.Body.setPosition(entities[`ObstacleTop${index}`].body, pipeSizePos.pipeTop.pos)
             Matter.Body.setPosition(entities[`ObstacleBottom${index}`].body, pipeSizePos.pipeBottom.pos)
+        
+            entities[`ObstacleTop${index}`].point = false
         }
 
         Matter.Body.translate(entities[`ObstacleTop${index}`].body, { x: -3, y: 0 })
