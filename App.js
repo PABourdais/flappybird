@@ -7,6 +7,7 @@ import Physics from './physics'
 
 export default function App() {
   const [running, setRunning] = useState(false)
+  const [gameEngine, setGameEngine] = useState(null)
 
   useEffect(() => {
     setRunning(true)
@@ -15,9 +16,17 @@ export default function App() {
   return (
     <View style={styles.container}>
       <GameEngine
+        ref={(ref) => { setGameEngine(ref) }}
         systems={[Physics]}
         entities={entities()}
         running={running}
+        onEvent={(e) => {
+          switch(e.type) {
+            case 'game_over':
+              setRunning(false)
+              gameEngine.stop()
+          }
+        }}
         style={styles.gameEngine}
       >
       </GameEngine>

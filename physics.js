@@ -33,6 +33,10 @@ const Physics = (entities, {touches, time, dispatch}) => {
         Matter.Body.translate(entities[`ObstacleBottom${index}`].body, { x: -3, y: 0 })
     }
 
+    Matter.Events.on(engine, 'collisionStart', (event) => {
+        dispatch({ type: 'game_over' })
+    })
+
     return entities
 } 
 
