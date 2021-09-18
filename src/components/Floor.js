@@ -21,7 +21,7 @@ const Floor = props => {
             height: heightBody,
 
         }}>
-             <ImageBackground source={require('../assets/images/base.png')} resizeMode="stretch" style={styles.image}/>
+             <ImageBackground source={require('../../assets/images/base.png')} resizeMode="stretch" style={styles.image}/>
         </View>
     )
 }

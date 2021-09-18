@@ -19,7 +19,7 @@ const Bird = props => {
             width: widthBody,
             height: heightBody,
         }}>
-            <ImageBackground source={require('../assets/images/bluebird-midflap.png')} resizeMode="contain" style={styles.image}/>
+            <ImageBackground source={require('../../assets/images/bluebird-midflap.png')} resizeMode="contain" style={styles.image}/>
         </View>
     )
 }

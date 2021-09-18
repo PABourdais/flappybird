@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import { GameEngine } from 'react-native-game-engine';
-import entities from './entities';
+import entities from './src/entities';
 import Physics from './physics'
 
 export default function App() {

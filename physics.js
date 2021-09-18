@@ -1,5 +1,5 @@
 import Matter from "matter-js"
-import { getPipeSizePosPair } from "./utils/random";
+import { getPipeSizePosPair } from "./src/utils/random";
 
 import { Dimensions } from "react-native";
 
