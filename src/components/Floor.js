@@ -9,11 +9,8 @@ const Floor = props => {
     const xBody = props.body.position.x - widthBody / 2
     const yBody = props.body.position.y - heightBody / 2
 
-    const color = props.color;
-
     return (
         <View style={{
-            backgroundColor: color,
             position: 'absolute',
             left: xBody,
             top: yBody,
@@ -21,12 +18,12 @@ const Floor = props => {
             height: heightBody,
 
         }}>
-             <ImageBackground source={require('../../assets/images/base.png')} resizeMode="stretch" style={styles.image}/>
+             <ImageBackground source={require('../../assets/images/base.png')} resizeMode="cover" style={styles.image}/>
         </View>
     )
 }
 
-export default (world, color, pos, size) => {
+export default (world, pos, size) => {
     const initialFloor = Matter.Bodies.rectangle(
         pos.x,
         pos.y,
@@ -42,7 +39,6 @@ export default (world, color, pos, size) => {
 
     return {
         body: initialFloor,
-        color,
         pos,
         renderer: <Floor/>
     }
