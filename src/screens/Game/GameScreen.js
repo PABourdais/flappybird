@@ -42,7 +42,7 @@ const GameScreen = () =>  {
                 </GameEngine>
                 {!running ?
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <TouchableOpacity style= {{backgroundColor: 'black', paddingHorizontal: 30, paddingVertical: 10}}
+                        <TouchableOpacity style= {styles.restartButton}
                                           onPress={()=> {
                                               setCurrentPoints(0)
                                               setRunning(true)
@@ -73,6 +73,16 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
+    },
+    restartButton: {
+        backgroundColor: 'red',
+        paddingHorizontal: 30,
+        paddingVertical: 10,
+        borderRadius: 20,
+        shadowOpacity: 0.75,
+        shadowRadius: 5,
+        shadowColor: '#444444',
+        shadowOffset: { height: 2, width: 2 },
     },
     score: {
         position: 'absolute',
