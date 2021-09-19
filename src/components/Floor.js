@@ -1,6 +1,7 @@
 import Matter from 'matter-js'
 import React from 'react'
 import { View, ImageBackground, StyleSheet } from 'react-native'
+import Images from '../../assets/Images';
 
 const Floor = props => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
@@ -18,7 +19,7 @@ const Floor = props => {
             height: heightBody,
 
         }}>
-             <ImageBackground source={require('../../assets/images/base.png')} resizeMode="cover" style={styles.image}/>
+             <ImageBackground source={Images.floor} resizeMode="cover" style={styles.image}/>
         </View>
     )
 }

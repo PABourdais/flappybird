@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity, ImageBackground, Dimensions }
 import { GameEngine } from 'react-native-game-engine';
 import entities from '../../entities';
 import Physics from '../../../physics';
+import Images from '../../../assets/Images';
 
 const windowWidth = Dimensions.get('window').width
 
@@ -18,7 +19,7 @@ const GameScreen = () =>  {
 
     return (
         <View style={styles.container}>
-            <ImageBackground source={require('../../../assets/images/background-day.png')} resizeMode="cover" style={styles.image}>
+            <ImageBackground source={Images.background} resizeMode="cover" style={styles.image}>
                 <Text style={styles.score}>{currentPoints}</Text>
                 <GameEngine
                     ref={(ref) => { setGameEngine(ref) }}

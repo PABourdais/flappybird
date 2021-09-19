@@ -1,6 +1,7 @@
 import Matter from 'matter-js'
 import React from 'react'
 import { View, ImageBackground, StyleSheet } from 'react-native'
+import Images from '../../assets/Images';
 
 const Bird = props => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
@@ -19,7 +20,7 @@ const Bird = props => {
             width: widthBody,
             height: heightBody,
         }}>
-            <ImageBackground source={require('../../assets/images/bluebird-midflap.png')} resizeMode="contain" style={styles.image}/>
+            <ImageBackground source={Images.bird1} resizeMode="contain" style={styles.image}/>
         </View>
     )
 }
