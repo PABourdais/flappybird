@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 import { GameEngine } from 'react-native-game-engine';
 import entities from '../../entities';
-import Physics from '../../../physics'
+import Physics from '../../../physics';
+
+const windowWidth = Dimensions.get('window').width
 
 const GameScreen = () =>  {
     const [running, setRunning] = useState(false)
@@ -17,7 +19,7 @@ const GameScreen = () =>  {
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../../../assets/images/background-day.png')} resizeMode="cover" style={styles.image}>
-                <Text style={{ textAlign: 'center', fontSize: 40, fontWeight: 'bold', margin: 20 }}>{currentPoints}</Text>
+                <Text style={styles.score}>{currentPoints}</Text>
                 <GameEngine
                     ref={(ref) => { setGameEngine(ref) }}
                     systems={[Physics]}
@@ -71,5 +73,16 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
+    },
+    score: {
+        position: 'absolute',
+        color: 'white',
+        fontSize: 50,
+        top: 20,
+        fontWeight: 'bold',
+        left: windowWidth / 2 - 20,
+        textShadowColor: '#444444',
+        textShadowOffset: { width: 2, height: 2},
+        textShadowRadius: 2,
     }
 });
