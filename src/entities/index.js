@@ -9,7 +9,7 @@ import { Dimensions } from "react-native";
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
 
-export default restart => {
+const restart = (birdColor) => {
     let engine = Matter.Engine.create({enableSleeping: false})
 
     engine.gravity.y = 0.4;
@@ -21,7 +21,7 @@ export default restart => {
 
     return {
         physics: {engine,world},
-        Bird: Bird(world, 'red', {x: 50, y: 300}, {height: 40, width: 40}),
+        Bird: Bird(world, birdColor, {x: 50, y: 300}, {height: 40, width: 40}),
         
         ObstacleTop1: Obstacle(world, 'ObstacleTop1', 'green', pipeSizePosA.pipeTop.pos, pipeSizePosA.pipeTop.size),
         ObstacleBottom1: Obstacle(world, 'ObstacleBottom1', 'green', pipeSizePosA.pipeBottom.pos, pipeSizePosA.pipeBottom.size),
@@ -33,3 +33,5 @@ export default restart => {
     }
 
 }
+
+export default restart;

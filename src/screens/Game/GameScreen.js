@@ -11,6 +11,7 @@ const windowWidth = Dimensions.get('window').width
 const GameScreen = () =>  {
     const [running, setRunning] = useState(false)
     const [gameEngine, setGameEngine] = useState(null)
+    const [birdColor, setBirdColor] = useState('red')
     const [currentPoints, setCurrentPoints] = useState(0)
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const GameScreen = () =>  {
                 <GameEngine
                     ref={(ref) => { setGameEngine(ref) }}
                     systems={[Physics]}
-                    entities={entities()}
+                    entities={entities(birdColor)}
                     running={running}
                     onEvent={(e) => {
                         switch(e.type) {
@@ -43,11 +44,25 @@ const GameScreen = () =>  {
                 </GameEngine>
                 {!running ?
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity style= {styles.colorButton}
+                                          onPress={()=> {
+                                              if ( birdColor === 'blue' ) {
+                                                  setBirdColor('red')
+                                              } else if ( birdColor === 'red' ) {
+                                                  setBirdColor('yellow')
+                                              } else {
+                                                  setBirdColor('red')
+                                              }
+                                          }}>
+                            <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10 }}>
+                                Change bird color
+                            </Text>
+                        </TouchableOpacity>
                         <TouchableOpacity style= {styles.restartButton}
                                           onPress={()=> {
                                               setCurrentPoints(0)
                                               setRunning(true)
-                                              gameEngine.swap(entities())
+                                              gameEngine.swap(entities(birdColor))
                                           }}>
                             <Text style={{fontWeight: 'bold', color: 'white', fontSize: 30}}>
                                 START GAME
@@ -76,6 +91,17 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     restartButton: {
+        backgroundColor: 'red',
+        paddingHorizontal: 30,
+        paddingVertical: 10,
+        borderRadius: 20,
+        shadowOpacity: 0.75,
+        shadowRadius: 5,
+        shadowColor: '#444444',
+        shadowOffset: { height: 2, width: 2 },
+    },
+    colorButton: {
+        marginBottom: 20,
         backgroundColor: 'red',
         paddingHorizontal: 30,
         paddingVertical: 10,

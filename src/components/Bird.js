@@ -12,6 +12,8 @@ const Bird = props => {
 
     const color = props.color;
 
+    let image = Images['bird1_' + props.color];
+
     return (
         <View style={{
             position: 'absolute',
@@ -20,7 +22,7 @@ const Bird = props => {
             width: widthBody,
             height: heightBody,
         }}>
-            <ImageBackground source={Images.bird1} resizeMode="contain" style={styles.image}/>
+            <ImageBackground source={image} resizeMode="contain" style={styles.image}/>
         </View>
     )
 }
