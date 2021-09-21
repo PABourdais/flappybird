@@ -11,6 +11,7 @@ const windowHeight = Dimensions.get('window').height
 
 const GameScreen = () => {
     const [running, setRunning] = useState(false)
+    const [pause, setPause] = useState(false)
     const [gameEngine, setGameEngine] = useState(null)
     const [birdColor, setBirdColor] = useState('red')
     const [currentPoints, setCurrentPoints] = useState(0)
@@ -22,6 +23,7 @@ const GameScreen = () => {
     let backButton = running
         ? <TouchableOpacity style={styles.pauseButton}
                             onPress={() => {
+                                setPause(true)
                                 setRunning(false)
                                 gameEngine.stop()
                             }}>
@@ -65,10 +67,22 @@ const GameScreen = () => {
                     {backButton}
 
                 </View>
-
+                {!running && pause ?
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity style={styles.restartButton}
+                                          onPress={() => {
+                                              setRunning(true)
+                                              setPause(false)
+                                              gameEngine.start()
+                                          }}>
+                            <Text style={{fontWeight: 'bold', color: 'white', fontSize: 30}}>
+                                RESUME
+                            </Text>
+                        </TouchableOpacity>
+                    </View> : null}
             </GameEngine>
             <Text style={styles.score}>{currentPoints}</Text>
-            {!running ?
+            {!running && !pause ?
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <TouchableOpacity style={styles.restartButton}
                                       onPress={() => {
