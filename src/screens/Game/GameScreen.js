@@ -84,6 +84,20 @@ const GameScreen = () => {
             <Text style={styles.score}>{currentPoints}</Text>
             {!running && !pause ?
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <TouchableOpacity style= {[styles.colorButton, { backgroundColor: birdColor }]}
+                                      onPress={()=> {
+                                          if ( birdColor === 'blue' ) {
+                                              setBirdColor('red')
+                                          } else if ( birdColor === 'red' ) {
+                                              setBirdColor('yellow')
+                                          } else {
+                                              setBirdColor('blue')
+                                          }
+                                      }}>
+                        <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10 }}>
+                            Bird color
+                        </Text>
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.restartButton}
                                       onPress={() => {
                                           setCurrentPoints(0)
@@ -142,8 +156,10 @@ const styles = StyleSheet.create({
         shadowOffset: {height: 2, width: 2},
     },
     colorButton: {
+        position: 'absolute',
+        top: 20,
+        left: windowWidth - 120,
         marginBottom: 20,
-        backgroundColor: 'red',
         paddingHorizontal: 30,
         paddingVertical: 10,
         borderRadius: 20,
