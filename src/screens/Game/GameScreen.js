@@ -19,6 +19,18 @@ const GameScreen = () => {
         setRunning(false)
     }, [])
 
+    let backButton = running
+        ? <TouchableOpacity style={styles.pauseButton}
+                            onPress={() => {
+                                setRunning(false)
+                                gameEngine.stop()
+                            }}>
+            <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10}}>
+               ||
+            </Text>
+        </TouchableOpacity>
+        : null;
+
     return (
         <View style={styles.container}>
             <Image source={Images.background} resizeMode="stretch" style={styles.image}/>
@@ -43,24 +55,21 @@ const GameScreen = () => {
                 style={styles.gameEngine}
             >
                 <StatusBar style="auto" hidden={true}/>
+                <View
+                    style={[
+                        styles.headingContainer,
+                        {marginLeft: backButton ? -50 : 0}
+                    ]}
+                >
+
+                    {backButton}
+
+                </View>
+
             </GameEngine>
             <Text style={styles.score}>{currentPoints}</Text>
             {!running ?
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <TouchableOpacity style={styles.colorButton}
-                                      onPress={() => {
-                                          if (birdColor === 'blue') {
-                                              setBirdColor('red')
-                                          } else if (birdColor === 'red') {
-                                              setBirdColor('yellow')
-                                          } else {
-                                              setBirdColor('red')
-                                          }
-                                      }}>
-                        <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10}}>
-                            Change bird color
-                        </Text>
-                    </TouchableOpacity>
                     <TouchableOpacity style={styles.restartButton}
                                       onPress={() => {
                                           setCurrentPoints(0)
@@ -108,6 +117,16 @@ const styles = StyleSheet.create({
         shadowColor: '#444444',
         shadowOffset: {height: 2, width: 2},
     },
+    pauseButton: {
+        backgroundColor: 'orange',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 20,
+        shadowOpacity: 0.75,
+        shadowRadius: 5,
+        shadowColor: '#444444',
+        shadowOffset: {height: 2, width: 2},
+    },
     colorButton: {
         marginBottom: 20,
         backgroundColor: 'red',
@@ -118,6 +137,11 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         shadowColor: '#444444',
         shadowOffset: {height: 2, width: 2},
+    },
+    headingContainer: {
+        position: 'absolute',
+        top: 20,
+        left: windowWidth - 20,
     },
     score: {
         position: 'absolute',
