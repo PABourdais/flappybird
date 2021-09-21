@@ -20,7 +20,7 @@ const GameScreen = () => {
         setRunning(false)
     }, [])
 
-    let backButton = running
+    let pauseButton = running
         ? <TouchableOpacity style={styles.pauseButton}
                             onPress={() => {
                                 setPause(true)
@@ -28,7 +28,7 @@ const GameScreen = () => {
                                 gameEngine.stop()
                             }}>
             <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10}}>
-               ||
+                ||
             </Text>
         </TouchableOpacity>
         : null;
@@ -64,7 +64,7 @@ const GameScreen = () => {
                     ]}
                 >
 
-                    {backButton}
+                    {pauseButton}
 
                 </View>
                 {!running && pause ?
@@ -84,17 +84,17 @@ const GameScreen = () => {
             <Text style={styles.score}>{currentPoints}</Text>
             {!running && !pause ?
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <TouchableOpacity style= {[styles.colorButton, { backgroundColor: birdColor }]}
-                                      onPress={()=> {
-                                          if ( birdColor === 'blue' ) {
+                    <TouchableOpacity style={[styles.colorButton, {backgroundColor: birdColor}]}
+                                      onPress={() => {
+                                          if (birdColor === 'blue') {
                                               setBirdColor('red')
-                                          } else if ( birdColor === 'red' ) {
+                                          } else if (birdColor === 'red') {
                                               setBirdColor('yellow')
                                           } else {
                                               setBirdColor('blue')
                                           }
                                       }}>
-                        <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10 }}>
+                        <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10}}>
                             Bird color
                         </Text>
                     </TouchableOpacity>

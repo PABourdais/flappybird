@@ -1,6 +1,6 @@
 import Matter from 'matter-js'
 import React from 'react'
-import { View, ImageBackground, StyleSheet } from 'react-native'
+import {View, ImageBackground, StyleSheet} from 'react-native'
 import Images from '../../assets/Images';
 
 const Bird = props => {
@@ -47,7 +47,7 @@ export default (world, color, pos, size) => {
 
 const styles = StyleSheet.create({
     image: {
-      flex: 1,
-      justifyContent: "center"
+        flex: 1,
+        justifyContent: "center"
     },
-  });
+});

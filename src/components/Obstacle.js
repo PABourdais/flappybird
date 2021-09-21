@@ -1,6 +1,6 @@
 import Matter from 'matter-js'
 import React from 'react'
-import { View } from 'react-native'
+import {View} from 'react-native'
 
 const Obstacle = props => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
