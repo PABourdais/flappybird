@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
         shadowOffset: {height: 2, width: 2},
     },
     pauseButton: {
-        backgroundColor: 'orange',
+        backgroundColor: '#13FF00',
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 20,
