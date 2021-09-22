@@ -60,7 +60,7 @@ const GameScreen = () => {
                 <View
                     style={[
                         styles.headingContainer,
-                        {marginLeft: backButton ? -50 : 0}
+                        {marginLeft: pauseButton ? -50 : 0}
                     ]}
                 >
 

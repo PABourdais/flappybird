@@ -12,7 +12,7 @@ const Bird = props => {
 
     const color = props.color;
 
-    let image = Images['bird1_' + props.color];
+    let image = Images['bird' + props.pose + '_' + props.color];
 
     return (
         <View style={{

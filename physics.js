@@ -6,6 +6,9 @@ import { Dimensions } from "react-native";
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
 
+let tick = 0;
+let pose = 1;
+
 
 const Physics = (entities, {touches, time, dispatch}) => {
     let engine = entities.physics.engine
@@ -43,6 +46,15 @@ const Physics = (entities, {touches, time, dispatch}) => {
     Matter.Events.on(engine, 'collisionStart', (event) => {
         dispatch({ type: 'game_over' })
     })
+
+    tick += 1;
+    if (tick % 5 === 0){
+        pose = pose + 1;
+        if (pose > 3){
+            pose = 1;
+        }
+        entities.Bird.pose = pose;
+    }
 
     return entities
 } 
