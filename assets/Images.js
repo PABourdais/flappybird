@@ -11,4 +11,5 @@ export default Images = {
     bird1_yellow: require('./images/yellowbird-downflap.png'),
     bird2_yellow: require('./images/yellowbird-midflap.png'),
     bird3_yellow: require('./images/yellowbird-upflap.png'),
+    message: require('./images/message.png'),
 }

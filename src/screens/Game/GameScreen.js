@@ -35,7 +35,7 @@ const GameScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Image source={Images.background} resizeMode="stretch" style={styles.image}/>
+            <Image source={Images.background} resizeMode="stretch" style={styles.imageBackground}/>
             <GameEngine
                 ref={(ref) => {
                     setGameEngine(ref)
@@ -98,15 +98,15 @@ const GameScreen = () => {
                             Bird color
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.restartButton}
-                                      onPress={() => {
-                                          setCurrentPoints(0)
-                                          setRunning(true)
-                                          gameEngine.swap(entities(birdColor))
-                                      }}>
-                        <Text style={{fontWeight: 'bold', color: 'white', fontSize: 30}}>
-                            START GAME
-                        </Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            setCurrentPoints(0)
+                            setRunning(true)
+                            gameEngine.swap(entities(birdColor))
+                        }}>
+
+                        <Image source={Images.message} resizeMode="contain"/>
+
                     </TouchableOpacity>
                 </View> : null}
         </View>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    image: {
+    imageBackground: {
         position: 'absolute',
         top: 0,
         bottom: 0,
@@ -134,16 +134,6 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-    },
-    restartButton: {
-        backgroundColor: 'red',
-        paddingHorizontal: 30,
-        paddingVertical: 10,
-        borderRadius: 20,
-        shadowOpacity: 0.75,
-        shadowRadius: 5,
-        shadowColor: '#444444',
-        shadowOffset: {height: 2, width: 2},
     },
     pauseButton: {
         backgroundColor: '#13FF00',
