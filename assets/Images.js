@@ -1,5 +1,6 @@
 export default Images = {
-    background: require('./images/background-day.png'),
+    background_day: require('./images/background-day.png'),
+    background_night: require('./images/background-night.png'),
     floor: require('./images/base.png'),
     pipeGreen: require('./images/pipe-green.png'),
     bird1_blue: require('./images/bluebird-downflap.png'),

@@ -14,7 +14,10 @@ const GameScreen = () => {
     const [pause, setPause] = useState(false)
     const [gameEngine, setGameEngine] = useState(null)
     const [birdColor, setBirdColor] = useState('red')
+    const [backgroundColor, setBackgroundColor] = useState('day')
     const [currentPoints, setCurrentPoints] = useState(0)
+
+    let imageBackground = Images['background_' + backgroundColor];
 
     useEffect(() => {
         setRunning(false)
@@ -33,9 +36,24 @@ const GameScreen = () => {
         </TouchableOpacity>
         : null;
 
+    let backgroundSelectionButton = running
+        ? <TouchableOpacity style={styles.pauseButton}
+                            onPress={() => {
+                                if (backgroundColor === 'day') {
+                                    setBackgroundColor('night')
+                                } else {
+                                    setBackgroundColor('day')
+                                }
+                            }}>
+            <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10}}>
+                mode
+            </Text>
+        </TouchableOpacity>
+        : null;
+
     return (
         <View style={styles.container}>
-            <Image source={Images.background} resizeMode="stretch" style={styles.imageBackground}/>
+            <Image source={imageBackground} resizeMode="stretch" style={styles.imageBackground}/>
             <GameEngine
                 ref={(ref) => {
                     setGameEngine(ref)
@@ -65,7 +83,6 @@ const GameScreen = () => {
                 >
 
                     {pauseButton}
-
                 </View>
                 {!running && pause ?
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -96,6 +113,18 @@ const GameScreen = () => {
                                       }}>
                         <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10}}>
                             Bird color
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.backgroundColorButton}
+                                      onPress={() => {
+                                          if (backgroundColor === 'day') {
+                                              setBackgroundColor('night')
+                                          } else {
+                                              setBackgroundColor('day')
+                                          }
+                                      }}>
+                        <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10}}>
+                            mode
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -138,6 +167,20 @@ const styles = StyleSheet.create({
     pauseButton: {
         backgroundColor: '#13FF00',
         paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 20,
+        shadowOpacity: 0.75,
+        shadowRadius: 5,
+        shadowColor: '#444444',
+        shadowOffset: {height: 2, width: 2},
+    },
+    backgroundColorButton: {
+        position: 'absolute',
+        backgroundColor: '#13FF00',
+        top: 70,
+        left: windowWidth - 100,
+        marginBottom: 20,
+        paddingHorizontal: 30,
         paddingVertical: 10,
         borderRadius: 20,
         shadowOpacity: 0.75,
