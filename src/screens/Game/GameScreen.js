@@ -24,15 +24,13 @@ const GameScreen = () => {
     }, [])
 
     let pauseButton = running
-        ? <TouchableOpacity style={styles.pauseButton}
-                            onPress={() => {
-                                setPause(true)
-                                setRunning(false)
-                                gameEngine.stop()
-                            }}>
-            <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10}}>
-                ||
-            </Text>
+        ? <TouchableOpacity
+            onPress={() => {
+                setPause(!pause)
+                setRunning(false)
+                gameEngine.stop()
+            }}>
+            <Image source={Images.pause} resizeMode="contain"/>
         </TouchableOpacity>
         : null;
 
@@ -78,25 +76,20 @@ const GameScreen = () => {
                 <View
                     style={[
                         styles.headingContainer,
-                        {marginLeft: pauseButton ? -50 : 0}
+                        {marginLeft: -50}
                     ]}
                 >
-
                     {pauseButton}
-                </View>
-                {!running && pause ?
-                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <TouchableOpacity style={styles.restartButton}
-                                          onPress={() => {
-                                              setRunning(true)
-                                              setPause(false)
-                                              gameEngine.start()
-                                          }}>
-                            <Text style={{fontWeight: 'bold', color: 'white', fontSize: 30}}>
-                                RESUME
-                            </Text>
+                    {!running && pause ?
+                        <TouchableOpacity
+                            onPress={() => {
+                                setPause(!pause)
+                                setRunning(true)
+                                gameEngine.start()
+                            }}>
+                            <Image source={Images.play} resizeMode="contain"/>
                         </TouchableOpacity>
-                    </View> : null}
+                        : null}</View>
             </GameEngine>
             <Text style={styles.score}>{currentPoints}</Text>
             {!running && !pause ?
@@ -165,14 +158,8 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     pauseButton: {
-        backgroundColor: '#13FF00',
         paddingHorizontal: 20,
         paddingVertical: 10,
-        borderRadius: 20,
-        shadowOpacity: 0.75,
-        shadowRadius: 5,
-        shadowColor: '#444444',
-        shadowOffset: {height: 2, width: 2},
     },
     backgroundColorButton: {
         position: 'absolute',
