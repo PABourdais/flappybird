@@ -73,12 +73,7 @@ const GameScreen = () => {
                 style={styles.gameEngine}
             >
                 <StatusBar style="auto" hidden={true}/>
-                <View
-                    style={[
-                        styles.headingContainer,
-                        {marginLeft: -50}
-                    ]}
-                >
+                <View style={styles.headingContainer}>
                     {pauseButton}
                     {!running && pause ?
                         <TouchableOpacity
@@ -89,7 +84,8 @@ const GameScreen = () => {
                             }}>
                             <Image source={Images.play} resizeMode="contain"/>
                         </TouchableOpacity>
-                        : null}</View>
+                        : null}
+                </View>
             </GameEngine>
             <Text style={styles.score}>{currentPoints}</Text>
             {!running && !pause ?
@@ -191,7 +187,7 @@ const styles = StyleSheet.create({
     headingContainer: {
         position: 'absolute',
         top: 20,
-        left: windowWidth - 20,
+        left: 10,
     },
     score: {
         position: 'absolute',
