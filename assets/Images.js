@@ -1,6 +1,7 @@
 export default Images = {
     background_day: require('./images/background-day.png'),
     background_night: require('./images/background-night.png'),
+    gameover: require('./images/gameover.png'),
     play: require('./images/play.png'),
     pause: require('./images/pause.png'),
     floor: require('./images/base.png'),
