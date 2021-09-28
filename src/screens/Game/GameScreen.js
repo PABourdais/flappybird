@@ -11,6 +11,7 @@ const windowHeight = Dimensions.get('window').height
 
 const GameScreen = () => {
     const [running, setRunning] = useState(false)
+    const [firstRun, setFirstRun] = useState(true)
     const [pause, setPause] = useState(false)
     const [gameEngine, setGameEngine] = useState(null)
     const [birdColor, setBirdColor] = useState('red')
@@ -63,6 +64,7 @@ const GameScreen = () => {
                     switch (e.type) {
                         case 'game_over':
                             setRunning(false)
+                            setFirstRun(false);
                             gameEngine.stop()
                             break;
                         case 'new_point':
@@ -116,16 +118,23 @@ const GameScreen = () => {
                             mode
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => {
-                            setCurrentPoints(0)
-                            setRunning(true)
-                            gameEngine.swap(entities(birdColor))
-                        }}>
-
-                        <Image source={Images.message} resizeMode="contain"/>
-
-                    </TouchableOpacity>
+                    {firstRun ?
+                        <TouchableOpacity
+                            onPress={() => {
+                                setCurrentPoints(0)
+                                setRunning(true)
+                                gameEngine.swap(entities(birdColor))
+                            }}>
+                            <Image source={Images.message} resizeMode="contain"/>
+                        </TouchableOpacity>
+                        : <TouchableOpacity
+                            onPress={() => {
+                                setCurrentPoints(0)
+                                setRunning(true)
+                                gameEngine.swap(entities(birdColor))
+                            }}>
+                            <Image source={Images.gameover} resizeMode="contain"/>
+                        </TouchableOpacity>}
                 </View> : null}
         </View>
     );
