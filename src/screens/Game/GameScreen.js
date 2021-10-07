@@ -106,7 +106,7 @@ const GameScreen = () => {
                             Bird color
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.backgroundColorButton}
+                    <TouchableOpacity style={[backgroundColor === 'day' ? {backgroundColor: '#080695'} : {backgroundColor: '#ECE500'}, styles.backgroundColorButton]}
                                       onPress={() => {
                                           if (backgroundColor === 'day') {
                                               setBackgroundColor('night')
@@ -114,8 +114,8 @@ const GameScreen = () => {
                                               setBackgroundColor('day')
                                           }
                                       }}>
-                        <Text style={{fontWeight: 'bold', color: 'white', fontSize: 10}}>
-                            mode
+                        <Text style={[backgroundColor === 'day' ? {color: 'yellow'} : {color: 'black'}, {fontWeight: 'bold', fontSize: 10}]}>
+                            {backgroundColor === 'day' ? 'Nuit' : 'Jour'}
                         </Text>
                     </TouchableOpacity>
                     {firstRun ?
@@ -168,7 +168,6 @@ const styles = StyleSheet.create({
     },
     backgroundColorButton: {
         position: 'absolute',
-        backgroundColor: '#13FF00',
         top: 70,
         left: windowWidth - 100,
         marginBottom: 20,
@@ -179,6 +178,12 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         shadowColor: '#444444',
         shadowOffset: {height: 2, width: 2},
+    },
+    backgroundColorButtonDay: {
+        backgroundColor: '#080695',
+    },
+    backgroundColorButtonNight: {
+        backgroundColor: 'orange',
     },
     colorButton: {
         position: 'absolute',
