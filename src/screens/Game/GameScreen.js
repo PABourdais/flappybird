@@ -1,6 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, ImageBackground, Dimensions, Image} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Dimensions, Image, Switch} from 'react-native';
 import {GameEngine} from 'react-native-game-engine';
 import entities from '../../entities';
 import Physics from '../../../physics';
@@ -17,6 +17,17 @@ const GameScreen = () => {
     const [birdColor, setBirdColor] = useState('red')
     const [backgroundColor, setBackgroundColor] = useState('day')
     const [currentPoints, setCurrentPoints] = useState(0)
+    const [isDay, setIsDay] = useState(false);
+
+    const toggleSwitch = () => {
+        if (isDay) {
+            setBackgroundColor('day')
+
+        } else {
+            setBackgroundColor('night')
+        }
+        setIsDay(previousState => !previousState);
+    }
 
     let imageBackground = Images['background_' + backgroundColor];
 
@@ -106,18 +117,14 @@ const GameScreen = () => {
                             Bird color
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[backgroundColor === 'day' ? {backgroundColor: '#080695'} : {backgroundColor: '#ECE500'}, styles.backgroundColorButton]}
-                                      onPress={() => {
-                                          if (backgroundColor === 'day') {
-                                              setBackgroundColor('night')
-                                          } else {
-                                              setBackgroundColor('day')
-                                          }
-                                      }}>
-                        <Text style={[backgroundColor === 'day' ? {color: 'yellow'} : {color: 'black'}, {fontWeight: 'bold', fontSize: 10}]}>
-                            {backgroundColor === 'day' ? 'Nuit' : 'Jour'}
-                        </Text>
-                    </TouchableOpacity>
+                    <Switch
+                        style={styles.switchButton}
+                        trackColor={{false: "#ECE500", true: "#080695"}}
+                        thumbColor={isDay ?  "#ECE500": "#080695"}
+                        ios_backgroundColor="#ECE500"
+                        onValueChange={toggleSwitch}
+                        value={isDay}
+                    />
                     {firstRun ?
                         <TouchableOpacity
                             onPress={() => {
@@ -166,24 +173,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
     },
-    backgroundColorButton: {
+    switchButton: {
         position: 'absolute',
         top: 70,
-        left: windowWidth - 100,
+        left: windowWidth - 70,
         marginBottom: 20,
-        paddingHorizontal: 30,
-        paddingVertical: 10,
-        borderRadius: 20,
-        shadowOpacity: 0.75,
-        shadowRadius: 5,
-        shadowColor: '#444444',
-        shadowOffset: {height: 2, width: 2},
-    },
-    backgroundColorButtonDay: {
-        backgroundColor: '#080695',
-    },
-    backgroundColorButtonNight: {
-        backgroundColor: 'orange',
     },
     colorButton: {
         position: 'absolute',
