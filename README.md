@@ -19,4 +19,5 @@ React Native implementation of the classic Flappy Bird game using react-native-g
 <p align="center" >
   <a href="https://twitter.com/pa_brds"><img src="https://img.shields.io/twitter/follow/pa_brds.svg?style=social" alt="Twitter"></a>
   <a href="https://github.com/PABourdais/"><img src="https://img.shields.io/github/followers/PABourdais.svg?style=social" alt="Github"></a>
+  <a href="https://www.linkedin.com/in/p-a-bourdais/"><img src="https://img.shields.io/badge/LinkedIn-blue?style=social&logo=linkedin&labelColor=blue" alt="LinkedIn"></a>
 </p>
